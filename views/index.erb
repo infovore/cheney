@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Cheney</title>
+    <style>
+      label {
+        font-weight: bold;
+        display: block;
+      }
+      
+      form div {
+        margin: 0 0 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Cheney</h1>
+
+    <form id="markov" action='/markov' method='post'>
+      <div>
+        <label>Corpus</label>
+        <textarea cols='80' rows='10' name='corpus'></textarea>
+      </div>
+
+      <div>
+        <label>Number of sentences to generate</label>
+      <input type='text' value='5' name='sentence_count' />
+      </div>
+
+      <input type='submit' /> <a id="clear" href='#'>Clear</a>
+    </form>
+
+    <div id="output"></div>
+
+    <script src="/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $("#markov").submit(function(e) {
+            $.post("/markov",
+                   $("#markov").serialize(),
+                   function (data) {
+                    $("#output").text(data);
+                   }
+            );
+            e.preventDefault();
+          });
+
+          $("#clear").click(function(e) {
+            $("#output").text("");
+            e.preventDefault;
+            return false;
+          });
+      });
+    </script>
+  </body>
+</html>
