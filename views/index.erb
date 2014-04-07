@@ -38,6 +38,11 @@
       <div>
         <label>Depth</label>
         <input type='text' value='2' name='depth' />
+        <select name='depth'>
+          <% (1..10).each do |n| %>
+            <option value='<%= n %>'/>
+          <% end %>
+        </select>
       </div>
 
       <input type='submit' /> <a id="clear" href='#'>Clear</a>
