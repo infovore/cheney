@@ -37,10 +37,9 @@
 
       <div>
         <label>Depth</label>
-        <input type='text' value='2' name='depth' />
         <select name='depth'>
           <% (1..10).each do |n| %>
-            <option value='<%= n %>'/>
+            <option value='<%= n %>' <%if n==2%>selected<% end%>><%= n %></option>
           <% end %>
         </select>
       </div>
