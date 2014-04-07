@@ -5,7 +5,13 @@ class Cheney < Sinatra::Base
   end
 
   post '/markov' do
-    markov = MarkyMarkov::TemporaryDictionary.new
+    depth = 2
+
+    if params[:depth] && params[:depth].to_i > 0
+      depth = params[:depth].to_i
+    end
+    markov = MarkyMarkov::TemporaryDictionary.new(depth)
+
     corpus = params[:corpus]
     sentences = params[:sentence_count].to_i
 
